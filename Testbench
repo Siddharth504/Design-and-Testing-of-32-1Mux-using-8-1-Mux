@@ -1,0 +1,25 @@
+// Code your testbench here
+// or browse Examples
+module test;
+  reg [31:0]a,b,c,d;
+  reg s1,s2;
+  wire [31:0] out;
+  mux M(out,a,b,c,d,s1,s2);
+  initial
+    begin
+      #5 s1=0;
+         s2=0;
+      #5 s2=0;s1=1;
+      #5 s2=1;s1=0;
+      #5 s1=1;s2=1;
+    end
+  initial
+    begin
+     a=5'd13;
+     b=5'd3;
+     c=5'd12;
+     d=5'd20;
+    end
+initial
+  $monitor("time=%d, Output=%d, A=%d, B=%d, C=%d, D=%d, S2=%d ,S1=%d",$time,out,a,b,c,d,s2,s1);
+endmodule
