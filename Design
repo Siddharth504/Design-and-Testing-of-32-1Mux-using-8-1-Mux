@@ -1,0 +1,17 @@
+// Code your design here
+module mux(out,a,b,c,d,s1,s2);
+  output [31:0] out;
+  input [31:0] a,b,c,d;
+  input s1,s2;
+  low_mux mux1(out[7:0],a[7:0],b[7:0],c[7:0],d[7:0],s1,s2);
+  low_mux mux2(out[15:8],a[15:8],b[15:8],c[15:8],d[15:8],s1,s2);             
+  low_mux mux3(out[23:16],a[23:16],b[23:16],c[23:16],d[23:16],s1,s2);
+  low_mux mux4(out[31:24],a[31:24],b[31:24],c[31:24],d[31:24],s1,s2);
+endmodule
+module low_mux(out,a,b,c,d,s1,s2);
+  output [7:0] out;
+  input  [7:0] a,b,c,d;
+  input   s1,s2;
+  assign out=s2?(s1?d:c):(s1?b:a);
+endmodule
+  
